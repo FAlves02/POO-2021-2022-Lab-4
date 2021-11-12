@@ -1,0 +1,44 @@
+@startuml
+class diary{
+collection jobs
+collection birthdays
+collection job_types
+collection holidays
+
+}
+
+class job{
+Date start_date
+Date end_date
+string place
+Date get_start_date()
+Date get_end_date()
+string get_place()
+
+}
+
+class birthday{
+Date birthday_date
+string person
+string get_person()
+Date get_birthday_date()
+}
+
+class job_type{
+Date end_date
+string description
+Date get_end_date()
+string get_description()
+}
+
+class holiday{
+Date date
+Date get_date()
+}
+
+
+diary <|-- job
+diary <|-- birthday
+diary <|-- holiday
+diary <|-- job_type
+@enduml
