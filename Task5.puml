@@ -1,0 +1,7 @@
+@startuml
+class Estacao{}
+class Linha{}
+class comboio{}
+class vagao{}
+class locomotivas{}
+@enduml

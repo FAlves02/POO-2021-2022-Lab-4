@@ -1,0 +1,34 @@
+@startuml
+class Cliente{
+    -nome
+    -morada
+    -bi
+    -cartao_banco
+    -collection <veiculo> veiculo
+    -collection <portagem> Portagem
+    +get_nome()
+    +get_morada()
+    +get_bi()
+    +get_cartao_banco()
+}
+
+class Veiculo{
+    -matricula
+    +get_matricula()
+}
+
+class Portagem{
+    -nome
+    -cidade
+    -valor
+    +get_nome()
+    +get_cidade()
+}
+
+class Passagem{
+    -Veiculo matricula
+    -Portagem valor
+}
+
+
+@enduml

@@ -1,0 +1,91 @@
+@startuml
+interface RentACar {
+    +Collection<Vehicle> getVehicles()
+    +Collection<Contract> getContracts()
+    +Collection<Client> getClients()
+}
+RentACar <|.. RentACarClass
+class RentACarClass {
+    -Collection<Vehicle> vehicles
+    -Collection<Contract> contracts
+    -Collection<Client> clients
+    +Collection<Vehicle> getVehicles()
+    +Collection<Client> getClients()
+    +Collection<Contract> getContracts()
+}
+RentACar "1" *-- "0..*" Vehicle
+RentACar "1" *-- "0..*" Contract
+RentACar "1" *-- "0..*" Client
+
+
+interface Vehicle {
+    +String getLicense()
+    +int getYear()
+    +int getMileage()
+}
+Vehicle <|.. VehicleClass
+abstract class VehicleClass {
+    -String license
+    -int year
+    -int mileage
+    +String getLicense()
+    +int getYear()
+    +int getMileage()
+}
+VehicleClass <|-- Car
+VehicleClass <|-- Truck
+VehicleClass <|-- Bike
+VehicleClass <|-- Boat
+
+interface Contract {
+    +Date getStartDate()
+    +int getDuration()
+    +Collection<Vehicle> getVehicles()
+}
+
+Contract "0..*" -- "1..*" Vehicle
+Contract <|.. ContractClass
+abstract class ContractClass {
+    -Date startDate
+    -int duration
+    -Collection<Vehicle> vehicles
+    +Date getStartDate()
+    +int getDuration()
+    +Collection<Vehicle> getVehicles()
+}
+ContractClass <|-- PrivateContract
+ContractClass <|-- CompanyContract
+
+class PrivateContract {
+    -Client client
+    +Client getClient()
+    +int getDiscount()
+}
+PrivateContract "0..*" -- "1" Client
+class Client {
+    -String name
+    -String id
+    -Collection<Client> relationships
+    +String getName()
+    +String getId()
+    +Collection<Client> getRelationships()
+
+}
+
+class CompanyContract {
+    -Company company
+    +Company getCompany()
+}
+CompanyContract "0..*" -- "1" Company
+class Company {
+    -String name
+    -CompanyGroup group
+    +String getName()
+    +CompanyGroup getCompanyGroup()
+}
+Company "1..*" -- "1" CompanyGroup
+class CompanyGroup {
+    -String name
+    +String getName()
+}
+@enduml
